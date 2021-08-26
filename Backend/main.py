@@ -1,3 +1,3 @@
-twd = TwitchWebDriver('')
-twd.login()
-time.sleep(10)
+import TwitchRunner
+
+TwitchRunner.start()

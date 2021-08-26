@@ -1,9 +1,6 @@
 from TwitchWebDriver import TwitchWebDriver
 import time
 
-twd = TwitchWebDriver()
-twd.login()
-
 #hier wird der nächste zu schauende stream aus der Datenbank ausgewählt
 def get_stream():
     pass
@@ -11,3 +8,8 @@ def get_stream():
 #hier wird der Stream geschaut
 def watch_stream():
     pass
+
+def start ():
+    twd = TwitchWebDriver()
+    twd.login()
+    #get_stream()
