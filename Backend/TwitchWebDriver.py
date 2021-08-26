@@ -5,6 +5,7 @@ import time
 class TwitchWebDriver(chromeWebDriver):
 
     __uname = 'kevoooo98'
+    __pass = 'H3nni33!!'
     __totp_key = 'M2HWAU3U3MJMEBF52PGLXPQYKGKFSA267JUAZMBAOIBSMSE4OGVQ'
     __first_i_field = '.XFvNK'
     __second_i_field = '.jsFUlW'
