@@ -1,15 +1,28 @@
 from TwitchWebDriver import TwitchWebDriver
 import time
 
-#hier wird der nächste zu schauende stream aus der Datenbank ausgewählt
-def get_stream():
-    pass
 
-#hier wird der Stream geschaut
-def watch_stream():
-    pass
+class TwitchRunner(TwitchWebDriver):
 
-def start ():
-    twd = TwitchWebDriver()
-    twd.login()
-    #get_stream()
+    def __init__(self):
+        super().__init__()
+        self.arg = arg
+
+    #hier wird der nächste zu schauende stream aus der Datenbank ausgewählt
+    def get_stream(self):
+        #url bekommen
+        #url einsetzen
+        pass
+
+    #hier wird der Stream geschaut
+    def watch_stream(self):
+        #stream 1 minute schauen
+        #1 minute von watchtime abziehen
+        #gucken ob channelpoints da sind
+        #wenn channelpoints da sind twitchwebdriver.farmchannelpoints
+        pass
+
+    def start (self):
+        self.twd = TwitchWebDriver()
+        selftwd.login()
+        #get_stream()
