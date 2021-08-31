@@ -10,7 +10,7 @@ class TwitchRunner(TwitchWebDriver):
 
     #hier wird der nächste zu schauende stream aus der Datenbank ausgewählt
     def get_stream(self):
-        #url bekommen
+        #url aus db bekommen
         #url einsetzen
         pass
 

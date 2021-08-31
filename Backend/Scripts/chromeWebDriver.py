@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 
 class chromeWebDriver():
 
@@ -16,3 +17,10 @@ class chromeWebDriver():
     def click_field (self, css_field):
         field = self.driver.find_element_by_css_selector(css_field)
         field.click()
+
+    def field_exists (self, css_field):
+        try:
+            webdriver.find_element_by_css_selector(css_field)
+        except NoSuchElementException:
+            return False
+        return True
