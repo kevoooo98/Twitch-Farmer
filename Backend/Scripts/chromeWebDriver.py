@@ -20,7 +20,7 @@ class chromeWebDriver():
 
     def field_exists (self, css_field):
         try:
-            webdriver.find_element_by_css_selector(css_field)
+            self.driver.find_element_by_css_selector(css_field)
         except NoSuchElementException:
             return False
         return True
