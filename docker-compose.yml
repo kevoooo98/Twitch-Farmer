@@ -1,0 +1,13 @@
+services:
+  web:
+    image: "twitchfarm-lap:latest"
+    ports:
+      - "80:80"
+  database:
+    image: "twitchfarm-db:latest"
+    volumes:
+      - "twitchfarm:/var/lib/mysql"
+  runner:
+    image: "twitchfarm-runner:latest"
+volumes:
+  twitchfarm:

@@ -1,3 +1,0 @@
-import TwitchRunner
-
-TwitchRunner.start()

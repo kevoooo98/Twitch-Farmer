@@ -1,5 +1,6 @@
 CREATE USER 'dbuser'@'%' IDENTIFIED BY 'geheim1';
 GRANT ALL PRIVILEGES ON *.* to 'dbuser'@'%' WITH GRANT OPTION;
+
 CREATE DATABASE twitchfarm;
 
 USE twitchfarm;

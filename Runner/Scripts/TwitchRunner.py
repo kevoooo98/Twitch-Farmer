@@ -1,12 +1,14 @@
 from TwitchWebDriver import TwitchWebDriver
+from DBController import DBController
 import time
 
 
 class TwitchRunner(TwitchWebDriver):
 
+    __get_stream_query = 'SELECT * FROM streams ORDER BY watchtime desc;'
+
     def __init__(self):
         super().__init__()
-        self.arg = arg
 
     #hier wird der nächste zu schauende stream aus der Datenbank ausgewählt
     def get_stream(self):
@@ -15,7 +17,7 @@ class TwitchRunner(TwitchWebDriver):
         pass
 
     #hier wird der Stream geschaut
-    def watch_stream(self):
+    def watch_stream(self, streamdata):
         #stream 1 minute schauen
         #1 minute von watchtime abziehen
         #gucken ob channelpoints da sind
@@ -23,6 +25,5 @@ class TwitchRunner(TwitchWebDriver):
         pass
 
     def start (self):
-        self.twd = TwitchWebDriver()
-        selftwd.login()
-        #get_stream()
+        super().login()
+        self.get_stream()
