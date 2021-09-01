@@ -12,7 +12,8 @@ class TwitchWebDriver(chromeWebDriver):
     __2FA_submit_field = '.gDHEzq'
     __conf_login_btn = '.eyrwSW'
     __login_btn = '.cAHINR'
-
+    __channel_status_indicator = "//div[@class='Layout-sc-nxg1ff-0 fkQgeT']"
+    __channel_points_btn = '.fERWGf'
 
     def __init__(self):
         super().__init__()
@@ -34,6 +35,11 @@ class TwitchWebDriver(chromeWebDriver):
         totp = pyotp.TOTP(self.__totp_key)
         super().input_field(self.__first_i_field, totp.now())
         super().click_field(self.__2FA_submit_field)
+        time.sleep(3)
 
     def farm_channelpoints(self):
-        pass
+        if super().field_exists(self.__channel_points_btn):
+            super().click_field(self.__channel_points_btn)
+
+    def is_live(self):
+        return super().field_exists_by_xpath(self.__channel_status_indicator)

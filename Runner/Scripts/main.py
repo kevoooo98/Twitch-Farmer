@@ -1,3 +1,4 @@
 from TwitchRunner import TwitchRunner
 
-TwitchRunner.start()
+tr = TwitchRunner()
+tr.start()

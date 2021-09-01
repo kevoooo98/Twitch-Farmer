@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-COPY Backend/Scripts/ /py-scripts/
+COPY Scripts/ /py-scripts/
 
 ARG DEBIAN_FRONTEND=noninteractive
 
