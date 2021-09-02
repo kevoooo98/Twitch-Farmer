@@ -36,7 +36,7 @@ class TwitchWebDriver(chromeWebDriver):
         totp = pyotp.TOTP(self.__totp_key)
         super().input_field(self.__first_i_field, totp.now())
         super().click_field(self.__2FA_submit_field)
-        time.sleep(3)
+        time.sleep(5)
 
     def farm_channelpoints(self):
         if super().field_exists(self.__channel_points_btn):
