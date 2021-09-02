@@ -5,7 +5,7 @@ import time
 class TwitchRunner(TwitchWebDriver):
 
     __get_stream_query = 'SELECT * FROM streams ORDER BY watchtime desc;'
-    __update_watchtime = 'UPDATE TABLE streams SET watchtime = %d WHERE ID_Stream = %d ;'
+    __update_watchtime = 'UPDATE streams SET watchtime = %d WHERE ID_Stream = %d ;'
     __delete_stream = 'DELETE FROM streams WHERE ID_Stream = %d ;'
 
     def __init__(self):
@@ -40,7 +40,7 @@ class TwitchRunner(TwitchWebDriver):
 
         if streamdata['watchtime'] <= 0 and streamdata['fav'] != b'\x01':
             self.delete_stream(streamdata)
-        elif not(super().is_live()) or super().get_current_url() != streamdata['url'] or self.watched_time == 15 and streamdata['fav'] != b'\x01':
+        elif not(super().is_live()) or super().get_current_url() != streamdata['url'] or (self.watched_time == 15 and streamdata['fav'] != b'\x01'):
             self.update_streamdata(streamdata)
         elif self.watched_time == 15 and streamdata['fav'] == b'\x01':
             pass
@@ -49,6 +49,7 @@ class TwitchRunner(TwitchWebDriver):
 
     def update_streamdata(self,streamdata):
         stmnt = (self.__update_watchtime %(streamdata['watchtime'], streamdata['ID_Stream']))
+        print(stmnt)
         self.dbc.run_statement(stmnt)
 
     def delete_stream(self,streamdata):
