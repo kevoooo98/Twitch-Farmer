@@ -19,6 +19,7 @@ class TwitchRunner(TwitchWebDriver):
             for stream in streams:
                 super().set_url(stream['url'])
                 if super().is_live():
+                    super().confirm_maturity()
                     self.watched_time = 0
                     self.watch_stream(stream)
             print('all streams watched')
@@ -37,11 +38,11 @@ class TwitchRunner(TwitchWebDriver):
         streamdata['watchtime'] = streamdata['watchtime']-1
         self.watched_time = self.watched_time+1
 
-        if streamdata['watchtime'] <= 0 and streamdata['fav'] != '\x01':
+        if streamdata['watchtime'] <= 0 and streamdata['fav'] != b'\x01':
             self.delete_stream(streamdata)
-        elif not(super().is_live()) or super().get_current_url() != streamdata['url'] or self.watched_time == 15 and streamdata['fav'] != '\x01':
+        elif not(super().is_live()) or super().get_current_url() != streamdata['url'] or self.watched_time == 15 and streamdata['fav'] != b'\x01':
             self.update_streamdata(streamdata)
-        elif self.watched_time == 15 and streamdata['fav'] == '\x01':
+        elif self.watched_time == 15 and streamdata['fav'] == b'\x01':
             pass
         else:
             self.watch_stream(streamdata)
