@@ -16,4 +16,4 @@ RUN apt update && \
   mv chromedriver /usr/bin/chromedriver &&\
   chown root:root /usr/bin/chromedriver &&\
   chmod +x /usr/bin/chromedriver &&\
-  python3 /pyscripts/main.py
+  python3 /py-scripts/main.py
