@@ -13,6 +13,8 @@ RUN apt update && \
   wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip &&\
   unzip chromedriver_linux64.zip &&\
   pip install selenium &&\
+  pip install pyotp &&\
+  pip install pymysql &&\
   mv chromedriver /usr/bin/chromedriver &&\
   chown root:root /usr/bin/chromedriver &&\
   chmod +x /usr/bin/chromedriver &&\
