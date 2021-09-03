@@ -23,7 +23,7 @@ class DBController():
 
     def get_connection(self):
         return pymysql.connect(
-            host='127.0.0.1',
+            host='database',
             db = 'twitchfarm',
             user='dbuser', passwd='geheim1',
             cursorclass=pymysql.cursors.DictCursor

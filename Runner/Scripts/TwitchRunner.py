@@ -15,17 +15,20 @@ class TwitchRunner(TwitchWebDriver):
     #hier wird der nächste zu schauende stream aus der Datenbank ausgewählt
     def get_stream(self):
         streams = self.dbc.fetch_query(self.__get_stream_query)
-        if streams:
-            for stream in streams:
-                super().set_url(stream['url'])
-                if super().is_live():
-                    super().confirm_maturity()
-                    self.watched_time = 0
-                    self.watch_stream(stream)
-            print('all streams watched')
-            time.sleep(10)
-        else:
-            time.sleep(60)
+        try:
+            if streams:
+                for stream in streams:
+                    super().set_url(stream['url'])
+                    if super().is_live():
+                        super().confirm_maturity()
+                        self.watched_time = 0
+                        self.watch_stream(stream)
+                print('all streams watched')
+                time.sleep(10)
+            else:
+                time.sleep(60)
+        except:
+            time.sleep(120)
 
         self.get_stream()
 

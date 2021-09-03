@@ -9,6 +9,7 @@ class DBController
   private $dbuser = 'dbuser';
   private $dbpass = 'geheim1';
   private $dsn = 'mysql:dbname=twitchfarm;host=database';
+  public $PDO ='';
 
   function __construct()
   {
@@ -19,6 +20,13 @@ class DBController
     $PDO = $this->PDO;
     $statement = $PDO->prepare($str_query);
     $statement->execute();
+  }
+
+  function fetchquery($str_query){
+    $PDO = $this->PDO;
+    $statement = $PDO->prepare($str_query);
+    $statement->execute();
+    return $statement->fetchAll();
   }
 
 }

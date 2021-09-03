@@ -1,6 +1,6 @@
 services:
   web:
-    image: "twitchfarm-lap:latest"
+    image: "twitchfarm-web:latest"
     ports:
       - "80:80"
   database:
@@ -9,5 +9,11 @@ services:
       - "twitchfarm:/var/lib/mysql"
   runner:
     image: "twitchfarm-runner:latest"
+    entrypoint: python3 /py-scripts/main.py
+    healthcheck:
+        test: python3 /py-scripts/main.py
+        interval: 30s
+        timeout: 10s
+        retries: 5
 volumes:
   twitchfarm:
