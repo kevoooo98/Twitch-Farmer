@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
   document.getElementById('fav').addEventListener('change', changefav);
+  document.querySelectorAll('[name="dlt-dataset"]').forEach(i=>{
+    i.value = i.parentElement.parentElement.parentElement.firstChild.innerHTML;
+  });
 });
 
 function changefav(){

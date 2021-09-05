@@ -8,7 +8,7 @@ class DBController
 
   private $dbuser = 'dbuser';
   private $dbpass = 'geheim1';
-  private $dsn = 'mysql:dbname=twitchfarm;host=database';
+  private $dsn = 'mysql:dbname=twitchfarm;host=127.0.0.1';
   public $PDO ='';
 
   function __construct()
@@ -26,7 +26,8 @@ class DBController
     $PDO = $this->PDO;
     $statement = $PDO->prepare($str_query);
     $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
   }
 
 }
