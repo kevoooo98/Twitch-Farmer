@@ -3,10 +3,14 @@ services:
     image: "twitchfarm-web:latest"
     ports:
       - "80:80"
+    volumes:
+      - "test:/var/www/html"
   database:
     image: "twitchfarm-db:latest"
     volumes:
       - "twitchfarm:/var/lib/mysql"
+    ports:
+      - "3306:3306"
   runner:
     image: "twitchfarm-runner:latest"
     entrypoint: python3 /py-scripts/main.py
@@ -17,3 +21,4 @@ services:
         retries: 5
 volumes:
   twitchfarm:
+  test:

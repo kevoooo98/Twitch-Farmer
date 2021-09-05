@@ -10,14 +10,13 @@ class chromeWebDriver():
     def __init__(self):
         options = Options();
         options.add_argument("--disable-gpu")
-        options.add_argument("--headless")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
     def set_url (self, url):
         browser = self.driver.get(url)
-        time.sleep(10)
+        time.sleep(15)
 
     def get_current_url(self):
         return self.driver.current_url

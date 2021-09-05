@@ -20,7 +20,8 @@
   $html = file_get_contents(BASE_DIR . '/html/form.html');
 
   include_once(BASE_DIR.'/controller/Tablecontroller.php');
-  $tc = new Tablecontroller();
+  $tc = new Tablecontroller($DBController);
+  
   $html = strtr($html,['{{table}}' => $tc->get_tabledata()]);
 
   echo $html;

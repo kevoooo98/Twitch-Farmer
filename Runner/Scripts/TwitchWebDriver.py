@@ -22,21 +22,27 @@ class TwitchWebDriver(chromeWebDriver):
 
     def login (self):
         super().click_field(self.__login_btn)
-        time.sleep(3)
+        time.sleep(8)
 
+        super().click_field(self.__first_i_field)
+        time.sleep(2)
         super().input_field(self.__first_i_field, self.__uname)
-        time.sleep(3)
+        time.sleep(8)
 
+        super().click_field(self.__second_i_field)
+        time.sleep(2)
         super().input_field(self.__second_i_field, self.__pass)
-        time.sleep(3)
+        time.sleep(8)
 
         super().click_field(self.__conf_login_btn)
-        time.sleep(3)
+        time.sleep(8)
 
         totp = pyotp.TOTP(self.__totp_key)
+        super().click_field(self.__first_i_field)
+        time.sleep(2)
         super().input_field(self.__first_i_field, totp.now())
         super().click_field(self.__2FA_submit_field)
-        time.sleep(5)
+        time.sleep(12)
 
     def farm_channelpoints(self):
         if super().field_exists(self.__channel_points_btn):

@@ -26,7 +26,7 @@ class DBController
     $PDO = $this->PDO;
     $statement = $PDO->prepare($str_query);
     $statement->execute();
-    return $statement->fetchAll();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
   }
 
 }
