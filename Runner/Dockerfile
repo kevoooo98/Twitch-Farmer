@@ -13,6 +13,9 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 #Install Selenium
 RUN wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip &&\
    unzip chromedriver_linux64.zip
+#mount the chrome profile
+RUN mkdir /chrome-profiles &&\
+  mount ~/.config/google-chrome /chrome-profiles
 #install pip requirements
 RUN pip install selenium &&\
   pip install pyotp &&\
