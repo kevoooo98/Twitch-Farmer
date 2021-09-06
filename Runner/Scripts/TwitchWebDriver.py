@@ -1,12 +1,13 @@
 from chromeWebDriver import chromeWebDriver
 import pyotp
 import time
+import os
 
 class TwitchWebDriver(chromeWebDriver):
 
-    __uname = 'kevoooo98'
-    __pass = 'H3nni33!!'
-    __totp_key = 'M2HWAU3U3MJMEBF52PGLXPQYKGKFSA267JUAZMBAOIBSMSE4OGVQ'
+    __uname = os.environ.get('USER')
+    __pass = os.environ.get('PASS')
+    __totp_key = os.environ.get('2FA_KEY')
     __first_i_field = '.XFvNK'
     __second_i_field = '.jsFUlW'
     __2FA_submit_field = '.gDHEzq'
