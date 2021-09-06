@@ -8,8 +8,6 @@ services:
     image: "kevoooo/twitchfarm-db:latest"
     volumes:
       - "twitchfarm:/var/lib/mysql"
-    ports:
-      - "3306:3306"
   runner:
     image: "kevoooo/twitchfarm-runner:latest"
     entrypoint: python3 /py-scripts/main.py
@@ -22,5 +20,8 @@ services:
       - USER=kevoooo98
       - PASS=H3nni33!!
       - 2FA_KEY=M2HWAU3U3MJMEBF52PGLXPQYKGKFSA267JUAZMBAOIBSMSE4OGVQ
+    volumes:
+      - "chrome-data:~/.config/google-chrome"
 volumes:
   twitchfarm:
+  chrome-data:
