@@ -39,6 +39,7 @@ class TwitchRunner(TwitchWebDriver):
             time.sleep(5)
         streamdata['watchtime'] = streamdata['watchtime']-1
         self.watched_time = self.watched_time+1
+        self.update_streamdata(streamdata)
 
         if streamdata['watchtime'] <= 0 and streamdata['fav'] != b'\x01':
             self.delete_stream(streamdata)

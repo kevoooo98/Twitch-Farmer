@@ -19,6 +19,7 @@ services:
         timeout: 10s
         retries: 5
     environment:
+      - DISPLAY=127.0.0.1
       - USER=kevooo98
       - PASS=H3nni33!!TWITCH
       - 2FA_KEY=OPC4T533MRSXH6QEGM4NEW6OMSEVNTI7TVRQUPNAGEOVRLFXB43A

@@ -12,7 +12,7 @@ class chromeWebDriver():
         options.add_argument("--disable-gpu")
         options.add_argument("no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--headless")
+        options.add_argument("--disable-setuid-sandbox")
         options.add_argument('user-data-dir=/saves/google-chrome')
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
