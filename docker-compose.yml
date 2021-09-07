@@ -8,6 +8,8 @@ services:
     image: "kevoooo/twitchfarm-db:latest"
     volumes:
       - "twitchfarm:/var/lib/mysql"
+    ports:
+      - "3306:3306"
   runner:
     image: "kevoooo/twitchfarm-runner:latest"
     entrypoint: python3 /py-scripts/main.py
@@ -17,11 +19,11 @@ services:
         timeout: 10s
         retries: 5
     environment:
-      - USER=kevoooo98
-      - PASS=H3nni33!!
-      - 2FA_KEY=M2HWAU3U3MJMEBF52PGLXPQYKGKFSA267JUAZMBAOIBSMSE4OGVQ
+      - USER=kevooo98
+      - PASS=H3nni33!!TWITCH
+      - 2FA_KEY=OPC4T533MRSXH6QEGM4NEW6OMSEVNTI7TVRQUPNAGEOVRLFXB43A
     volumes:
-      - "chrome-data:/home/root/.config/google-chrome"
+      - "chrome-data:/saves/google-chrome"
 volumes:
   twitchfarm:
   chrome-data:
