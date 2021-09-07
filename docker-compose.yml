@@ -21,7 +21,7 @@ services:
       - PASS=H3nni33!!
       - 2FA_KEY=M2HWAU3U3MJMEBF52PGLXPQYKGKFSA267JUAZMBAOIBSMSE4OGVQ
     volumes:
-      - "chrome-data:/chrome-profiles"
+      - "chrome-data:/home/root/.config/google-chrome"
 volumes:
   twitchfarm:
   chrome-data:
