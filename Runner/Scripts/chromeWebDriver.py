@@ -11,7 +11,7 @@ class chromeWebDriver():
         options.add_argument("--enable-javascript")
         options.add_argument("start-maximized")
 
-        self.driver = webdriver.Chrome(
+        self.driver = webdriver.Remote(
             command_executor='http://chromedriver:4444',
             options=options
         )
