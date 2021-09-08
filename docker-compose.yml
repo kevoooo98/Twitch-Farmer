@@ -29,9 +29,9 @@ services:
         timeout: 10s
         retries: 5
     environment:
-      - USER=kevoooo98
-      - PASS=H3nni33!!
-      - 2FA_KEY=GHUUW7OG35757MFWQ7ZXCJHQ5GFUWEEKOLMRH5T5ZSPXU4WCYYWA
+      - USER=
+      - PASS=
+      - 2FA_KEY=
     depends_on:
       - chromedriver
 volumes:
