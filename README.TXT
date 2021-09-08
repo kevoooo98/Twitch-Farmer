@@ -32,8 +32,18 @@ Auf dem System sollten die Pakete "docker" und "docker-compose" installiert sein
 
 4. cd Twitch-Farmer
 
-5. sudo docker-compose up
+Nun sollte das docker-compose.yml angepasst werden
+Geben Sie als Variable USER, PASS und 2FA_KEY Ihre Twitch Nutzerdaten ein.
+  Um den 2FA_KEY zu erhalten, müssen Sie auf twitch.tv die "FA aktivieren, den
+  QR-Code Downloaden und zB mit zbarimg auslesen
 
-6. Installation abgeschlossen.
+5. nano docker-compose.yml
 
-Nun können über die Weboberfläche http://IP-Adresse die entsprechenden Streamer sowie die Watchtime (Wie lange der Stream angeschaut werden soll) eingetragen werden.
+6. sudo docker-compose up
+
+7. Installation abgeschlossen.
+
+Nun können über die Weboberfläche http://IP-Adresse die entsprechenden Streamer
+sowie die Watchtime (Wie lange der Stream in Minuten angeschaut werden soll) eingetragen werden.
+
+Unter http:7/IP-Adresse:7900 kann dem Webdriver zugeschaut werden.

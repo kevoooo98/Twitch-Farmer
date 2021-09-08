@@ -1,11 +1,11 @@
 version: "3"
 services:
   web:
-    image: "kevoooo/twitchfarm-web:latest"
+    build: ./Web/
     ports:
       - "80:80"
   database:
-    image: "kevoooo/twitchfarm-db:latest"
+    build: ./Database/
     volumes:
       - "twitchfarm:/var/lib/mysql"
     ports:
@@ -21,7 +21,7 @@ services:
       - SCREEN_WIDTH=1920
       - SCREEN_HEIGHT=1080
   runner:
-    image: "kevoooo/twitchfarm-runner:latest"
+    build: ./Runner/
     entrypoint: bash -c "sleep 10 && python3 /py-scripts/main.py"
     healthcheck:
         test:  ["CMD", "curl", "-f", "http://chromedriver:4444"]
