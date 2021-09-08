@@ -46,4 +46,4 @@ Geben Sie als Variable USER, PASS und 2FA_KEY Ihre Twitch Nutzerdaten ein.
 Nun können über die Weboberfläche http://IP-Adresse die entsprechenden Streamer
 sowie die Watchtime (Wie lange der Stream in Minuten angeschaut werden soll) eingetragen werden.
 
-Unter http:7/IP-Adresse:7900 kann dem Webdriver zugeschaut werden. Das Passwort ist "secret"
+Unter http://IP-Adresse:7900 kann dem Webdriver zugeschaut werden. Das Passwort ist "secret"
