@@ -16,7 +16,7 @@ class TwitchWebDriver(chromeWebDriver):
     __login_btn = '.cAHINR'
     __channel_status_indicator = "//div[@class='Layout-sc-nxg1ff-0 fkQgeT']"
     __channel_points_btn = '.fERWGf'
-    __mature_button = '//button[@class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonPrimary-sc-1qn4ixc-1 euIPFy"]'
+    __mature_button = '.euIPFy'
 
     def __init__(self):
         super().__init__()
@@ -38,7 +38,7 @@ class TwitchWebDriver(chromeWebDriver):
             time.sleep(4)
 
             super().click_field(self.__conf_login_btn)
-            time.sleep(4)
+            time.sleep(60)
 
             totp = pyotp.TOTP(self.__totp_key)
             super().click_field(self.__first_i_field)
@@ -55,5 +55,5 @@ class TwitchWebDriver(chromeWebDriver):
         return super().field_exists_by_xpath(self.__channel_status_indicator)
 
     def confirm_maturity(self):
-        if super().field_exists_by_xpath(self.__mature_button):
-            super().click_field_by_xpath(self.__mature_button)
+        if super().field_exists(self.__mature_button):
+            super().click_field(self.__mature_button)

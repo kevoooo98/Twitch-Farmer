@@ -35,11 +35,14 @@ class TwitchRunner(TwitchWebDriver):
     #hier wird der Stream geschaut
     def watch_stream(self, streamdata):
         for i in range(12):
+            print('5 sek over')
             super().farm_channelpoints()
             time.sleep(5)
+        print('1 min over')
         streamdata['watchtime'] = streamdata['watchtime']-1
         self.watched_time = self.watched_time+1
         self.update_streamdata(streamdata)
+        print(streamdata)
 
         if streamdata['watchtime'] <= 0 and streamdata['fav'] != b'\x01':
             self.delete_stream(streamdata)
@@ -62,6 +65,7 @@ class TwitchRunner(TwitchWebDriver):
     #fertig geschauten stream aus DB löschen
     def delete_stream(self,streamdata):
         stmnt = (self.__delete_stream %(streamdata['ID_Stream']))
+        print(stmnt)
         self.dbc.run_statement(stmnt)
 
     #Das schauen beginnen
