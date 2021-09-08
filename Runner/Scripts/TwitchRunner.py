@@ -35,23 +35,18 @@ class TwitchRunner(TwitchWebDriver):
     #hier wird der Stream geschaut
     def watch_stream(self, streamdata):
         for i in range(12):
-            print('5 sek over')
             super().farm_channelpoints()
             time.sleep(5)
-        print('1 min over')
         streamdata['watchtime'] = streamdata['watchtime']-1
         self.watched_time = self.watched_time+1
-        self.update_streamdata(streamdata)
-        print(streamdata)
+        if not streamdata['watchtime'] < 0:
+            self.update_streamdata(streamdata)
 
         if streamdata['watchtime'] <= 0 and streamdata['fav'] != b'\x01':
             self.delete_stream(streamdata)
-            print(streamdata['url'] + ' done watching')
         elif not(super().is_live()) or super().get_current_url() != streamdata['url'] or (self.watched_time == 15 and streamdata['fav'] != b'\x01'):
             self.update_streamdata(streamdata)
-            print(streamdata['url'] + ' watched ' + self.watched_time)
         elif self.watched_time == 15 and streamdata['fav'] == b'\x01':
-            print(streamdata['url'] + ' watched ' + self.watched_time + ' minutes')
             pass
         else:
             self.watch_stream(streamdata)
@@ -59,17 +54,14 @@ class TwitchRunner(TwitchWebDriver):
     #neue Daten in die Datenbank einpflegen
     def update_streamdata(self,streamdata):
         stmnt = (self.__update_watchtime %(streamdata['watchtime'], streamdata['ID_Stream']))
-        print(stmnt)
         self.dbc.run_statement(stmnt)
 
     #fertig geschauten stream aus DB löschen
     def delete_stream(self,streamdata):
         stmnt = (self.__delete_stream %(streamdata['ID_Stream']))
-        print(stmnt)
         self.dbc.run_statement(stmnt)
 
     #Das schauen beginnen
     def start (self):
         super().login()
-        print('logged in')
         self.get_stream()
