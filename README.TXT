@@ -18,19 +18,19 @@ sudo apt upgrade -y
 
 1. sudo apt install git
 
-2. git pull https://github.com/kevoooo98/Twitch-Farmer.git
+Auf dem System sollten die Pakete "docker" und "docker-compose" installiert sein
 
-3. cd Twitch-Farmer
+2.curl -fsSL https://test.docker.com -o test-docker.sh
 
-Ggf. müssen vor dem Ausführen des folgenden Befehls die Pakete "docker-compose" und "docker" installiert werden.
+  sudo sh test-docker.sh
 
-4.  curl -fsSL https://test.docker.com -o test-docker.sh
+  sudo curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
-    sudo sh test-docker.sh
+  sudo chmod +x /usr/local/bin/docker-compose
 
-    sudo curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+3. git pull https://github.com/kevoooo98/Twitch-Farmer.git
 
-    sudo chmod +x /usr/local/bin/docker-compose
+4. cd Twitch-Farmer
 
 5. sudo docker-compose up
 
