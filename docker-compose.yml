@@ -31,9 +31,7 @@ services:
     environment:
       - USER=kevoooo98
       - PASS=H3nni33!!
-      - 2FA_KEY=SDFRE6SD6NQUIGP4DS6WBKWKTT5J72J66RUOSZY4MTW4SNAKD4GA
-    volumes:
-      - "chrome-data:/saves/google-chrome"
+      - 2FA_KEY=GHUUW7OG35757MFWQ7ZXCJHQ5GFUWEEKOLMRH5T5ZSPXU4WCYYWA
     depends_on:
       - chromedriver
 volumes:
