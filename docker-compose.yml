@@ -20,7 +20,20 @@ services:
     environment:
       - SCREEN_WIDTH=1920
       - SCREEN_HEIGHT=1080
-
+  runner:
+    image: "kevoooo/twitchfarm-runner:latest"
+    entrypoint: bash -c "sleep 10 && python3 /py-scripts/main.py"
+    healthcheck:
+        test:  ["CMD", "curl", "-f", "http://chromedriver:4444"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+    environment:
+      - USER=
+      - PASS=
+      - 2FA_KEY=
+    depends_on:
+      - chromedriver
 volumes:
   twitchfarm:
   chrome-data:
