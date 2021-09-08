@@ -1,5 +1,4 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
@@ -9,13 +8,13 @@ class chromeWebDriver():
 
     def __init__(self):
         options = Options();
-        options.add_argument("--disable-gpu")
-        options.add_argument("no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--disable-setuid-sandbox")
-        options.add_argument('user-data-dir=/saves/google-chrome')
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        options.add_argument("--enable-javascript")
+        options.add_argument("start-maximized")
 
+        self.driver = webdriver.Remote(
+            command_executor='http://chromedriver:4444',
+            options=options
+        )
 
     def set_url (self, url):
         browser = self.driver.get(url)
@@ -30,6 +29,10 @@ class chromeWebDriver():
 
     def click_field (self, css_field):
         field = self.get_field(css_field)
+        field.click()
+
+    def click_field_by_xpath (self, xpath_field):
+        field = self.get_field_by_xpath(xpath_field)
         field.click()
 
     def field_exists (self, css_field):
@@ -48,3 +51,7 @@ class chromeWebDriver():
 
     def get_field (self, css_field):
         return self.driver.find_element_by_css_selector(css_field)
+
+
+    def get_field_by_xpath (self, css_field):
+        return self.driver.find_element_by_xpath(xpath)

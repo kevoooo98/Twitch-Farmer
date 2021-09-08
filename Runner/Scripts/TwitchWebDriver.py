@@ -1,4 +1,5 @@
 from chromeWebDriver import chromeWebDriver
+from selenium.webdriver.common.action_chains import ActionChains
 import pyotp
 import time
 import os
@@ -15,15 +16,14 @@ class TwitchWebDriver(chromeWebDriver):
     __login_btn = '.cAHINR'
     __channel_status_indicator = "//div[@class='Layout-sc-nxg1ff-0 fkQgeT']"
     __channel_points_btn = '.fERWGf'
-    __mature_button = '.euIPFy'
-    __login_status = '//button[@data-a-target="user-menu-toggle"]'
+    __mature_button = '//button[@class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonPrimary-sc-1qn4ixc-1 euIPFy"]'
 
     def __init__(self):
         super().__init__()
         super().set_url('https://twitch.tv')
 
     def login (self):
-        if not(super().field_exists_by_xpath(self.__login_status)):
+        if (super().field_exists(self.__login_btn)):
             super().click_field(self.__login_btn)
             time.sleep(5)
 
@@ -55,8 +55,5 @@ class TwitchWebDriver(chromeWebDriver):
         return super().field_exists_by_xpath(self.__channel_status_indicator)
 
     def confirm_maturity(self):
-        if super().field_exists(self.__mature_button):
-            print('18 oder älter')
-            super().click_field(self.__mature_button)
-        else:
-            print('unter 18')
+        if super().field_exists_by_xpath(self.__mature_button):
+            super().click_field_by_xpath(self.__mature_button)

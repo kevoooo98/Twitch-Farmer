@@ -10,21 +10,32 @@ services:
       - "twitchfarm:/var/lib/mysql"
     ports:
       - "3306:3306"
+  chromedriver:
+    image: selenium/standalone-chrome:4.0.0-rc-2-prerelease-20210908
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+    hostname: chromedriver
+    shm_size: 2g
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
   runner:
     image: "kevoooo/twitchfarm-runner:latest"
-    entrypoint: python3 /py-scripts/main.py
+    entrypoint: bash -c "sleep 10 && python3 /py-scripts/main.py"
     healthcheck:
-        test: python3 /py-scripts/main.py
+        test:  ["CMD", "curl", "-f", "http://chromedriver:4444"]
         interval: 30s
         timeout: 10s
         retries: 5
     environment:
-      - DISPLAY=127.0.0.1
-      - USER=kevooo98
-      - PASS=H3nni33!!TWITCH
-      - 2FA_KEY=OPC4T533MRSXH6QEGM4NEW6OMSEVNTI7TVRQUPNAGEOVRLFXB43A
+      - USER=kevoooo98
+      - PASS=H3nni33!!
+      - 2FA_KEY=SDFRE6SD6NQUIGP4DS6WBKWKTT5J72J66RUOSZY4MTW4SNAKD4GA
     volumes:
       - "chrome-data:/saves/google-chrome"
+    depends_on:
+      - chromedriver
 volumes:
   twitchfarm:
   chrome-data:
