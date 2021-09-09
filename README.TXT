@@ -8,9 +8,12 @@ Projektmitglieder: Luke Gutbier, Finn Heeck, Tilman Lenz und Daniel Manjajkin
 
 
 #INSTALLATION
+Diese Anleitung gilt für Debian und Ubuntu derivate auf Basis eines amd64 Prozessors.
+
 
 Bevor die eigentliche Installation durchgeführt werden kann,
 wird empfohlen das System auf mögliche Updates zu überprüfen und entsprechend zu aktualisieren.
+
 
 sudo apt update
 sudo apt upgrade -y
