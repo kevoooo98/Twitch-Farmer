@@ -1,22 +1,27 @@
+# Stage 1: Build stage
 FROM mariadb:latest as builder
 
-# That file does the DB initialization but also runs mysql daemon, by removing the last line it will only init
+# Modify the entrypoint script to only initialize the database, not run the MySQL daemon
 RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
 
-# needed for intialization
+# Set the root password for initialization
 ENV MYSQL_ROOT_PASSWORD=root
 
+# Copy the SQL script for initialization
 COPY dbsetup.sql /docker-entrypoint-initdb.d/
 
+# Set permissions for the initialization script
 RUN chown -R mysql:mysql /docker-entrypoint-initdb.d/ &&\
   chmod -R 777 docker-entrypoint-initdb.d
 
-# Need to change the datadir to something else that /var/lib/mysql because the parent docker file defines it as a volume.
-# https://docs.docker.com/engine/reference/builder/#volume :
-#       Changing the volume from within the Dockerfile: If any build steps change the data within the volume after
-#       it has been declared, those changes will be discarded.
+# Initialize the database without starting the MySQL daemon
 RUN ["/usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized-db", "--aria-log-dir-path", "/initialized-db"]
 
+# Stage 2: Final stage
 FROM mariadb:latest
 
+# Copy the initialized database from the build stage
 COPY --from=builder /initialized-db /var/lib/mysql
+
+# Start the MySQL daemon in the final image
+CMD ["mysqld"]
