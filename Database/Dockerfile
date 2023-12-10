@@ -23,5 +23,8 @@ FROM mariadb:latest
 # Copy the initialized database from the build stage
 COPY --from=builder /initialized-db /var/lib/mysql
 
+# Set the PATH to include the MySQL binaries directory
+ENV PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/mysql"
+
 # Start the MySQL daemon in the final image
 CMD ["mysqld"]
