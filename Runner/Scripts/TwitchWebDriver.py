@@ -14,7 +14,7 @@ class TwitchWebDriver(chromeWebDriver):
     __2fa_i_field = ''
     __2FA_submit_field = '.gDHEzq'
     __conf_login_btn = '.eyrwSW'
-    __login_btn = "//button[@data-a-target='login-button']"
+    __login_btn = ".//button[@data-a-target='login-button']"
     __channel_status_indicator = "//div[@class='Layout-sc-nxg1ff-0 fkQgeT']"
     __channel_points_btn = '.fERWGf'
     __mature_button = '.euIPFy'
