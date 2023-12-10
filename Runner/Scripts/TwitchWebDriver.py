@@ -9,11 +9,12 @@ class TwitchWebDriver(chromeWebDriver):
     __uname = os.environ.get('USER')
     __pass = os.environ.get('PASS')
     __totp_key = os.environ.get('2FA_KEY')
-    __first_i_field = '.XFvNK'
-    __second_i_field = '.jsFUlW'
+    __first_i_field = '.ScInputBase-sc-vu8u7d-0'
+    __second_i_field = '.ScInput-sc-29xfhag-0'
+    __2fa_i_field = ''
     __2FA_submit_field = '.gDHEzq'
     __conf_login_btn = '.eyrwSW'
-    __login_btn = '.cAHINR'
+    __login_btn = "//button[@data-a-target='login-button']"
     __channel_status_indicator = "//div[@class='Layout-sc-nxg1ff-0 fkQgeT']"
     __channel_points_btn = '.fERWGf'
     __mature_button = '.euIPFy'
@@ -23,8 +24,8 @@ class TwitchWebDriver(chromeWebDriver):
         super().set_url('https://twitch.tv')
 
     def login (self):
-        if (super().field_exists(self.__login_btn)):
-            super().click_field(self.__login_btn)
+        if (super().field_exists_by_xpath(self.__login_btn)):
+            super().click_field_by_xpath(self.__login_btn)
             time.sleep(5)
 
             super().click_field(self.__first_i_field)
