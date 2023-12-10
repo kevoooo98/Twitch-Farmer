@@ -1,4 +1,5 @@
 # Stage 1: Build stage
+# Stage 1: Build stage
 FROM mariadb:latest as builder
 
 # Set the root password for initialization
